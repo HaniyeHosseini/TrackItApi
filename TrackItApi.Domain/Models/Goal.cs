@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Jobs;
-using TrackItApi.Domain.Enums;
+﻿using TrackItApi.Domain.Enums;
 
 namespace TrackItApi.Domain.Models
 {

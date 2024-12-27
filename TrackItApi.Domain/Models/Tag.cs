@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Jobs;
-
-namespace TrackItApi.Domain.Models
+﻿namespace TrackItApi.Domain.Models
 {
     public class Tag : BaseModel
     {

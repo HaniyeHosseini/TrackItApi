@@ -1,3 +1,5 @@
+using TrackItApi.Config;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+ConfigureServices.Config(builder.Services, builder.Configuration.GetConnectionString("TrackItApiConnection"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
