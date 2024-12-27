@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Jobs;
 using TrackItApi.Domain.Enums;
 
 namespace TrackItApi.Domain.Models
@@ -15,7 +15,7 @@ namespace TrackItApi.Domain.Models
         public Status Status { get; set; }
         public long PlanId { get; set; }
         public virtual Plan Plan { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<Job> Jobs { get; set; }
         public Goal(string title, string? description, DateTime targetDate, long planId)
         {
             Title = title;

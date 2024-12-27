@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Jobs;
 using TrackItApi.Domain.Enums;
 
 namespace TrackItApi.Domain.Models
 {
-    public class Task : BaseModel
+    public class Job : BaseModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -17,10 +18,10 @@ namespace TrackItApi.Domain.Models
         public Status Status { get; set; }
         public long GoalId { get; set; }
         public Goal Goal { get; set; }
-        public long? ParentTaskId { get; set; }
-        public Task? ParentTask { get; set; }
-
-        public Task(string title, string description, DateTime startDate, DateTime endDate, PriorityLevel prioritylevel, long goalId, long? parentTaskId)
+        public long? ParentJobId { get; set; }
+        public Job? ParentJob { get; set; }
+        public Collection<Job> ChildJobs { get; set; }
+        public Job(string title, string description, DateTime startDate, DateTime endDate, PriorityLevel prioritylevel, long goalId, long? parentJobId)
         {
             Title = title;
             Description = description;
@@ -28,7 +29,7 @@ namespace TrackItApi.Domain.Models
             EndDate = endDate;
             Prioritylevel = prioritylevel;
             GoalId = goalId;
-            ParentTaskId = parentTaskId;
+            ParentJobId = parentJobId;
         }
     }
 }

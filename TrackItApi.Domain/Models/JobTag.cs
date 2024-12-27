@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TrackItApi.Domain.Models
 {
-    public class TaskTag
+    public class JobTag
     {
-        public long TaskId { get; set; }
-        public Task Task { get; set; }
+        public long JobId { get; set; }
+        public Job Job { get; set; }
         public long TagId { get; set; }
         public Tag Tag { get; set; }
 
-        public TaskTag(long taskId, long tagId)
+        public JobTag(long JobId, long tagId)
         {
-            TaskId = taskId;
+            JobId = JobId;
             TagId = tagId;
         }
     }

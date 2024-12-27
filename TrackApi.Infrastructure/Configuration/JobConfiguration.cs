@@ -1,0 +1,28 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TrackItApi.Domain.Models;
+
+namespace TrackApi.Infrastructure.Configuration
+{
+    public class JobConfiguration : IEntityTypeConfiguration<Job>
+    {
+        public void Configure(EntityTypeBuilder<Job> builder)
+        {
+            builder.ToTable("Jobs");
+            builder.HasKey(j => j.ID);
+            builder.Property(j => j.Title).IsRequired().HasMaxLength(1500);
+            builder.Property(j => j.ParentJobId).IsRequired(false);
+            builder.Ignore(j => j.Status);
+            builder.Property(j => j.StartDate).IsRequired();
+            builder.Property(j => j.EndDate).IsRequired();
+            builder.Property(j => j.Description).IsRequired(false).HasMaxLength(2500);
+            builder.Property(j => j.Prioritylevel).IsRequired();
+            builder.HasOne(j => j.ParentJob).WithMany(j => j.ChildJobs).HasForeignKey(j => j.ParentJobId);
+            builder.HasOne(j => j.Goal).WithMany(j => j.Jobs).HasForeignKey(j => j.GoalId);
+        }
+    }
+}
