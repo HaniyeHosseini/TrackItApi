@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Plans\Implements\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrackItApi.Common\TrackItApi.Common.csproj" />
+    <ProjectReference Include="..\TrackItApi.Domain\TrackItApi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackItApi.Domain", "TrackItApi.Domain\TrackItApi.Domain.csproj", "{9F6CF02E-1E3A-4374-B683-2BB89534C5EC}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{4C555943-70A1-48DC-8E07-DD138AD86D2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackItApi.Config", "TrackItApi.Configuration\TrackItApi.Config.csproj", "{311025B3-F890-4ABF-82D6-4544649A2578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackItApi.Common", "TrackItApi.Common\TrackItApi.Common.csproj", "{4DABB1DE-0C72-4191-BF4A-388FBD27383F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{311025B3-F890-4ABF-82D6-4544649A2578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{311025B3-F890-4ABF-82D6-4544649A2578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{311025B3-F890-4ABF-82D6-4544649A2578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DABB1DE-0C72-4191-BF4A-388FBD27383F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DABB1DE-0C72-4191-BF4A-388FBD27383F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DABB1DE-0C72-4191-BF4A-388FBD27383F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DABB1DE-0C72-4191-BF4A-388FBD27383F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
