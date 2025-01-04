@@ -2,7 +2,7 @@
 {
     public class BaseModel
     {
-        public long ID { get; set; }
+        public long Id { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime LastUpdate { get; set; }
 

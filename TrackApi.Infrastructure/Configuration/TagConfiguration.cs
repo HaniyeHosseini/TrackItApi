@@ -9,7 +9,7 @@ namespace TrackApi.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Tag> builder)
         {
             builder.ToTable("Tags");
-            builder.HasKey(t => t.ID);
+            builder.HasKey(t => t.Id);
             builder.Property(t => t.Title).IsRequired().HasMaxLength(1500);
         }
     }

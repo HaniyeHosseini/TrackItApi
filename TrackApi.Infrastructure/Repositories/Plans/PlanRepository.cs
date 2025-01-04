@@ -21,9 +21,9 @@ namespace TrackApi.Infrastructure.Repositories.Plans
            return _context.Plans.Include(p => p.Goals).ToListAsync();
         }
 
-        public Task<Plan> GetPlanWithGoalsByPlanId(long planId)
+        public Task<Plan?> GetPlanWithGoalsByPlanId(long planId)
         {
-            return _context.Plans.Include(p=> p.Goals).SingleOrDefaultAsync(p=>p.ID==planId);
+            return _context.Plans.Include(p=> p.Goals).SingleOrDefaultAsync(p=>p.Id==planId);
         }
         
     }

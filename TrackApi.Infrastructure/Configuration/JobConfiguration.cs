@@ -9,7 +9,7 @@ namespace TrackApi.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Job> builder)
         {
             builder.ToTable("Jobs");
-            builder.HasKey(j => j.ID);
+            builder.HasKey(j => j.Id);
             builder.Property(j => j.Title).IsRequired().HasMaxLength(1500);
             builder.Property(j => j.ParentJobId).IsRequired(false);
             builder.Ignore(j => j.Status);
