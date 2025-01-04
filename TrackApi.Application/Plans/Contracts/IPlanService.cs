@@ -10,10 +10,10 @@ namespace TrackApi.Application.Plans.Contracts
 {
     public interface IPlanService
     {
-        OperationResult Insert(CreationPlanDto plan); 
-        OperationResult Update(UpdatePlanDto plan);
-        OperationResult Remove(long planId);
-        PlanViewDto GetPlanWithGoalsByPlanId(long planId);
-        IList<PlanViewDto> GetAllPlansWithGoals();
+        Task<OperationResult> Insert(CreationPlanDto plan);
+        Task<OperationResult> Update(UpdatePlanDto plan);
+        Task<OperationResult> Remove(long planId);
+        Task<PlanViewDto?> GetPlanWithGoalsByPlanId(long planId);
+        Task<IList<PlanViewDto>> GetAllPlansWithGoals();
     }
 }

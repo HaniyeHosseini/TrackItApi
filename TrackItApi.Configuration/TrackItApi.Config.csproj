@@ -9,9 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TrackApi.Application\TrackApi.Application.csproj" />
     <ProjectReference Include="..\TrackApi.Infrastructure\TrackApi.Infrastructure.csproj" />
   </ItemGroup>
 

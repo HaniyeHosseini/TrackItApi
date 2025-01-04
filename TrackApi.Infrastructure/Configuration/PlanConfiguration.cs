@@ -10,6 +10,7 @@ namespace TrackApi.Infrastructure.Configuration
         {
             builder.ToTable("Plans");
             builder.HasKey(p => p.ID);
+            builder.Property(p=>p.ID).UseIdentityColumn();
             builder.Property(p => p.PlanType).HasColumnType("int").IsRequired();
             builder.Property(p => p.StartDate).IsRequired();
             builder.Property(p => p.EndDate).IsRequired();

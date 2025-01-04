@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Plans\Implements\" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TrackApi.Infrastructure\TrackApi.Infrastructure.csproj" />
     <ProjectReference Include="..\TrackItApi.Common\TrackItApi.Common.csproj" />
     <ProjectReference Include="..\TrackItApi.Domain\TrackItApi.Domain.csproj" />
   </ItemGroup>

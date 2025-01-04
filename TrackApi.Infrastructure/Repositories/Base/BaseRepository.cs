@@ -12,8 +12,8 @@ namespace TrackApi.Infrastructure.Repositories.Base
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseModel
     {
-        private readonly TrackApiContext _context;
-        protected readonly DbSet<T> _dbSet;
+        protected readonly TrackApiContext _context;
+        protected readonly DbSet<T> _dbSet; 
         public BaseRepository(TrackApiContext context)
         {
             _context = context;
@@ -38,6 +38,7 @@ namespace TrackApi.Infrastructure.Repositories.Base
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
+           
         }
 
         public async Task UpdateAsync(T entity)
@@ -46,8 +47,9 @@ namespace TrackApi.Infrastructure.Repositories.Base
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task DeleteAsync(long id)
         {
+            var entity = await _dbSet.FindAsync(id);
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
         }
