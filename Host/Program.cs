@@ -1,4 +1,4 @@
-using TrackApi.Application.Plans.Mappings;
+using TrackApi.Application.Mappings;
 using TrackItApi.Config;
 
 var builder = WebApplication.CreateBuilder(args);

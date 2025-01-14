@@ -47,10 +47,17 @@ namespace TrackApi.Infrastructure.Repositories.Base
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task RemoveAsync(long id)
         {
             var entity = await _dbSet.FindAsync(id);
             _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            if(entities==null || !entities.Any()) throw new ArgumentNullException(nameof(entities));
+            await _dbSet.AddRangeAsync(entities);
             await _context.SaveChangesAsync();
         }
     }

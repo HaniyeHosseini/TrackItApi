@@ -12,5 +12,6 @@ namespace TrackApi.Infrastructure.Repositories.Plans
     {
         Task<List<Plan>> GetAllPlansWithGoals();
         Task<Plan?> GetPlanWithGoalsByPlanId(long planId);
+        Task RemovePlanWithGoals(long planId);
     }
 }

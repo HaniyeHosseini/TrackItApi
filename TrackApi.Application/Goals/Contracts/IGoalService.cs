@@ -10,7 +10,7 @@ namespace TrackApi.Application.Goals.Contracts
 {
     public interface IGoalService
     {
-        Task<OperationResult> InsertGoalToPlan(long planId, CreationGoalDto goal);
+        Task<OperationResult> InsertGoalToPlan(CreationGoalDto goal);
         Task<OperationResult> UpdateGoal(UpdateGoalDto goal);
         Task<OperationResult> RemoveGoal(long goalId);
         Task<GoalViewDto> GetGoal(long goalId);
