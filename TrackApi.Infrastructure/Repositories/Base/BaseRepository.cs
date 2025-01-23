@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using TrackApi.Infrastructure.Context;
 using TrackItApi.Domain.Models;
 
@@ -59,6 +54,11 @@ namespace TrackApi.Infrastructure.Repositories.Base
             if(entities==null || !entities.Any()) throw new ArgumentNullException(nameof(entities));
             await _dbSet.AddRangeAsync(entities);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsAnyExist(Expression<Func<T, bool>> predicate)
+        {
+            return await  _dbSet.AnyAsync(predicate);
         }
     }
 }

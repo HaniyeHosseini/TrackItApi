@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TrackApi.Application.Plans.Contracts;
 using TrackApi.Application.Plans.Dtos;
 using TrackItApi.Common;

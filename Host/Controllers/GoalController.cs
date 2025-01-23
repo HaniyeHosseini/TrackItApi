@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TrackApi.Application.Goals.Contracts;
 using TrackApi.Application.Goals.Dtos;
 
@@ -30,7 +29,7 @@ namespace Host.Controllers
         [HttpPost]
         public async Task InsertGoalToPlan(CreationGoalDto goalDto)
         {
-            await _goalService.InsertGoalToPlan(goalDto);
+            await _goalService.BulkInsert(goalDto);
         }
         [HttpPut]
         public async Task UpdateGoal(UpdateGoalDto goalDto)

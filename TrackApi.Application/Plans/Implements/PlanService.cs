@@ -1,9 +1,5 @@
 ﻿using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TrackApi.Application.Goals.Contracts;
 using TrackApi.Application.Plans.Contracts;
 using TrackApi.Application.Plans.Dtos;
 using TrackApi.Infrastructure.Repositories.Goals;
@@ -16,11 +12,13 @@ namespace TrackApi.Application.Plans.Implements
     public class PlanService : IPlanService
     {
         private readonly IPlanRepository _planRepository;
-        private readonly IGoalRepository _goalRepository;
-        public PlanService(IPlanRepository planRepository, IGoalRepository goalRepository)
+        private readonly IGoalService  _goalService;
+        private readonly IPlanValidationService _planValidationService;
+        public PlanService(IPlanRepository planRepository, IGoalService goalService, IPlanValidationService planValidationService)
         {
             _planRepository = planRepository;
-            _goalRepository = goalRepository;
+            _goalService = goalService;
+            _planValidationService = planValidationService;
         }
 
         public async Task<IList<PlanViewDto>> GetAllPlansWithGoals()
@@ -40,15 +38,15 @@ namespace TrackApi.Application.Plans.Implements
         public async Task<OperationResult> Insert(CreationPlanDto plan)
         {
             var operationResult = new OperationResult();
-            var entity = new Plan(plan.PlanType, plan.StartDate, plan.EndDate, plan.ParentPlanId, plan.Description);
-            var goals = new List<Goal>(plan.Goals.Count);
-            await _planRepository.AddAsync(entity);
-            foreach (var goal in plan.Goals)
+            var duplicateResult = await _planValidationService.IsPlanDuplicate(plan);
+            if (duplicateResult)
             {
-                var goalEntity = new Goal(goal.Title, goal.Description, goal.TargetDate, entity.Id);
-                goals.Add(goalEntity);
+                /// exception handling
             }
-            await _goalRepository.AddRangeAsync(goals);
+            var entity = new Plan(plan.PlanType, plan.StartDate, plan.EndDate, plan.ParentPlanId, plan.Description);
+            var goals = plan.Goals;
+            await _planRepository.AddAsync(entity);
+            await _goalService.BulkInsert(goals);
             operationResult.Succed();
             return operationResult;
         }
@@ -64,6 +62,11 @@ namespace TrackApi.Application.Plans.Implements
         public async Task<OperationResult> Update(UpdatePlanDto plan)
         {
             var operationResult = new OperationResult();
+            var duplicateResult = await _planValidationService.IsPlanDuplicate(plan);
+            if (duplicateResult)
+            {
+                /// exception handling
+            }
             var entity = plan.Adapt<Plan>();
             entity.LastUpdate = DateTime.Now;
             await _planRepository.UpdateAsync(entity);

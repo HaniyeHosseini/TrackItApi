@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using TrackItApi.Domain.Models;
 
 namespace TrackApi.Infrastructure.Repositories.Base
@@ -17,5 +12,6 @@ namespace TrackApi.Infrastructure.Repositories.Base
         Task UpdateAsync(T entity);
         Task RemoveAsync(long id);
         Task AddRangeAsync(IEnumerable<T> entities);
+        Task<bool> IsAnyExist(Expression<Func<T, bool>> predicate);
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrackApi.Application.Goals.Dtos;
+﻿using TrackApi.Application.Goals.Dtos;
 using TrackItApi.Common;
 
 namespace TrackApi.Application.Goals.Contracts
 {
     public interface IGoalService
     {
-        Task<OperationResult> InsertGoalToPlan(CreationGoalDto goal);
+        Task<OperationResult> Insert(CreationGoalDto goal);
+        Task<OperationResult> BulkInsert(IList<CreationGoalDto> goals);
         Task<OperationResult> UpdateGoal(UpdateGoalDto goal);
         Task<OperationResult> RemoveGoal(long goalId);
         Task<GoalViewDto> GetGoal(long goalId);
