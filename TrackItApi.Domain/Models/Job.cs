@@ -12,10 +12,7 @@ namespace TrackItApi.Domain.Models
         public PriorityLevel  Prioritylevel { get; set; }
         public Status Status { get; set; }
         public long GoalId { get; set; }
-        public Goal Goal { get; set; }
         public long? ParentJobId { get; set; }
-        public Job? ParentJob { get; set; }
-        public Collection<Job> ChildJobs { get; set; }
         public Job(string title, string description, DateTime startDate, DateTime endDate, PriorityLevel prioritylevel, long goalId, long? parentJobId)
         {
             Title = title;

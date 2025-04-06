@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackApi.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using TrackApi.Infrastructure.Context;
 namespace TrackApi.Infrastructure.Migrations
 {
     [DbContext(typeof(TrackApiContext))]
-    partial class TrackApiContextModelSnapshot : ModelSnapshot
+    [Migration("20250326103848_RemoveReferencesFromModels")]
+    partial class RemoveReferencesFromModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,8 +118,6 @@ namespace TrackApi.Infrastructure.Migrations
 
                     b.HasKey("JobId", "TagId");
 
-                    b.HasIndex("TagId");
-
                     b.ToTable("JobTags", (string)null);
                 });
 
@@ -201,21 +202,6 @@ namespace TrackApi.Infrastructure.Migrations
                     b.HasOne("TrackItApi.Domain.Models.Job", null)
                         .WithMany()
                         .HasForeignKey("ParentJobId");
-                });
-
-            modelBuilder.Entity("TrackItApi.Domain.Models.JobTag", b =>
-                {
-                    b.HasOne("TrackItApi.Domain.Models.Job", null)
-                        .WithMany()
-                        .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TrackItApi.Domain.Models.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("TrackItApi.Domain.Models.Plan", b =>

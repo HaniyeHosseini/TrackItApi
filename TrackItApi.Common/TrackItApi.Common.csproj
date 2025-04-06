@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="PersianDate" Version="3.5.5" />
+    <PackageReference Include="SlackNet.Extensions.DependencyInjection" Version="0.16.0" />
+  </ItemGroup>
+
 </Project>

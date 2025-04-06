@@ -9,10 +9,7 @@ namespace TrackItApi.Domain.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public long? ParentPlanId { get; set; }
-        public virtual Plan? ParentPlan { get; set; }
         public string? Description { get; set; }
-        public Collection<Goal> Goals { get; set; }
-        public Collection<Plan> ChildPlans { get; set; }
 
         public Plan(PlanType planType, DateTime startDate, DateTime endDate, long? parentPlanId, string? description )
         {

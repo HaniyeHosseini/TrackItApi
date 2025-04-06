@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PersianDate.Standard;
+using System.Globalization;
+using System.Net;
+using TrackApi.Application.DTOs.Goal;
 using TrackApi.Application.Goals.Contracts;
-using TrackApi.Application.Goals.Dtos;
+using TrackItApi.Common;
 
 namespace Host.Controllers
 {
@@ -15,31 +19,46 @@ namespace Host.Controllers
             _goalService = goalService;
         }
 
-        [HttpGet("{goalId}")]
-        public async Task<GoalViewDto> GetGoal(long goalId)
+        [HttpGet("ByGoalId/{goalId}")]
+        public async Task<IActionResult> GetGoal(long goalId)
         {
-            return await _goalService.GetGoal(goalId);
+            var goal = await _goalService.GetGoal(goalId);
+            return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.OK));
+
+        }
+        [HttpGet("ByPlanId/{planId}")]
+        public async Task<IActionResult> GetGoals(long planId)
+        {
+            var goals = await _goalService.GetGoalsByPlanId(planId);
+            return Ok(OperationResult<IList<OutputGoalDto>>.Success(goals, HttpStatusCode.OK));
+
         }
         [HttpGet]
-        public async Task<IList<GoalViewDto>> GetGoal([FromQuery]DateTime? startDate , [FromQuery] DateTime? endDate)
+        public async Task<IActionResult> GetGoals([FromQuery]string? startDate , [FromQuery] string? endDate)
         {
-            var goals = await _goalService.GetGoalsByDateFilter(startDate,endDate);
-            return goals;
+            var goals = await _goalService.GetGoalsByDateFilter(startDate?.ToEn(),endDate?.ToEn());
+            return Ok(OperationResult<IList<OutputGoalDto>>.Success(goals, HttpStatusCode.OK));
         }
         [HttpPost]
-        public async Task InsertGoalToPlan(CreationGoalDto goalDto)
+        public async Task<IActionResult> InsertGoalToPlan(InputCreationGoalDto goalDto)
         {
-            await _goalService.BulkInsert(goalDto);
+            var goal = await _goalService.Insert(goalDto);
+            return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.Created));
+
         }
         [HttpPut]
-        public async Task UpdateGoal(UpdateGoalDto goalDto)
+        public async Task<IActionResult> UpdateGoal(InputUpdateGoalDto goalDto)
         {
-            await _goalService.UpdateGoal(goalDto);
+            var goal = await _goalService.UpdateGoal(goalDto);
+            return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.OK));
+
         }
-        [HttpDelete]
-        public async Task RemoveGoal(long goalId)
+        [HttpDelete("{goalId}")]
+        public async Task<IActionResult> RemoveGoal(long goalId)
         {
-            await _goalService.RemoveGoal(goalId);
+            var result =await _goalService.RemoveGoal(goalId);
+            return Ok(OperationResult<bool>.Success(result, HttpStatusCode.OK));
+
         }
     }
 }

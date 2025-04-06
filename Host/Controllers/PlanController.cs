@@ -1,50 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using TrackApi.Application.DTOs.Plan;
 using TrackApi.Application.Plans.Contracts;
-using TrackApi.Application.Plans.Dtos;
+using TrackApi.Application.Validators;
 using TrackItApi.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Host.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PlanController : ControllerBase
     {
         private readonly IPlanService _planService;
-
         public PlanController(IPlanService planService)
         {
             _planService = planService;
         }
 
         [HttpGet]
-        public async Task<IList<PlanViewDto>> GetAllPlans()
+        public async Task<IActionResult> GetAllPlans()
         {
-            var plans = await _planService.GetAllPlansWithGoals();
-            return plans;
+            var plans = await _planService.GetAllPlans();
+            return Ok(OperationResult<IList<OutputPlanDto>>.Success(plans, HttpStatusCode.OK));
         }
         [HttpGet("{planId}")]
-        public async Task<PlanViewDto?> GetPlanById(long planId)
+        public async Task<IActionResult?> GetPlanById(long planId)
         {
-            var plan = await _planService.GetPlanWithGoalsByPlanId(planId);
-            return plan;
+            var plan = await _planService.GetPlanByPlanId(planId);
+            return Ok(OperationResult<OutputPlanDto>.Success(plan, HttpStatusCode.OK));
         }
         [HttpPost]
-        public async Task<OperationResult> InsertPlanWithGoals(CreationPlanDto creationPlanDto)
+        public async Task<IActionResult> Insert([FromBody] InputCreationPlanDto creationPlanDto)
         {
-           var result = await _planService.Insert(creationPlanDto);
-            return result;
+            var data = await _planService.Insert(creationPlanDto);
+            return Ok(OperationResult<OutputPlanDto>.Success(data, HttpStatusCode.Created));
         }
         [HttpPut]
-        public async Task<OperationResult> UpdatePlanWithGoals(UpdatePlanDto updatePlanDto)
+        public async Task<IActionResult> Update([FromBody] InputUpdatePlanDto updatePlanDto)
         {
-           var result = await _planService.Update(updatePlanDto);
-            return result;
+            var result = await _planService.Update(updatePlanDto);
+            return Ok(OperationResult<OutputPlanDto>.Success(result, HttpStatusCode.OK));
         }
-        [HttpDelete]
-        public async Task<OperationResult> DeletePlanById(long planId)
+        [HttpDelete("{planId}")]
+        public async Task<IActionResult> DeletePlanById(long planId)
         {
-          var result = await  _planService.Remove(planId);
-            return result;
+            var result = await _planService.Remove(planId);
+            return Ok(OperationResult<bool>.Success(true, HttpStatusCode.OK));
         }
     }
 }

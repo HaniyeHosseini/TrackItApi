@@ -10,6 +10,8 @@ namespace TrackApi.Infrastructure.Configuration
         {
             builder.ToTable("JobTags");
             builder.HasKey(t => new { t.JobId, t.TagId });
+            builder.HasOne<Job>().WithMany().HasForeignKey(t => t.JobId);
+            builder.HasOne<Tag>().WithMany().HasForeignKey(t => t.TagId);
         }
     }
 }

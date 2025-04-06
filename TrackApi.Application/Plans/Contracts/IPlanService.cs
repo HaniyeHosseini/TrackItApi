@@ -1,14 +1,14 @@
-﻿using TrackApi.Application.Plans.Dtos;
+﻿using TrackApi.Application.DTOs.Plan;
 using TrackItApi.Common;
 
 namespace TrackApi.Application.Plans.Contracts
 {
     public interface IPlanService
     {
-        Task<OperationResult> Insert(CreationPlanDto plan);
-        Task<OperationResult> Update(UpdatePlanDto plan);
-        Task<OperationResult> Remove(long planId);
-        Task<PlanViewDto?> GetPlanWithGoalsByPlanId(long planId);
-        Task<IList<PlanViewDto>> GetAllPlansWithGoals();
+        Task<OutputPlanDto> Insert(InputCreationPlanDto plan);
+        Task<OutputPlanDto> Update(InputUpdatePlanDto plan);
+        Task<bool> Remove(long planId);
+        Task<OutputPlanDto?> GetPlanByPlanId(long planId);
+        Task<IList<OutputPlanDto>> GetAllPlans();
     }
 }

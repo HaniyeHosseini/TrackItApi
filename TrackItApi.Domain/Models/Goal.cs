@@ -9,8 +9,6 @@ namespace TrackItApi.Domain.Models
         public DateTime TargetDate { get; set; }
         public Status Status { get; set; }
         public long PlanId { get; set; }
-        public virtual Plan Plan { get; set; }
-        public ICollection<Job> Jobs { get; set; }
         public Goal(string title, string? description, DateTime targetDate, long planId)
         {
             Title = title;

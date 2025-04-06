@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrackApi.Application.DTOs.Plan;
 using TrackApi.Application.Plans.Contracts;
-using TrackApi.Application.Plans.Dtos;
 using TrackApi.Infrastructure.Repositories.Plans;
 
 namespace TrackApi.Application.Plans.Implements
@@ -18,18 +18,18 @@ namespace TrackApi.Application.Plans.Implements
             _planRepository = planRepository;
         }
 
-        public async Task<bool> IsPlanDuplicate(CreationPlanDto plan)
+        public async Task<bool> IsPlanDuplicate(InputCreationPlanDto plan)
         {
             return await _planRepository.IsAnyExist(x => x.PlanType == plan.PlanType 
-                                                      && x.StartDate == plan.StartDate
-                                                      && x.EndDate == plan.EndDate);
+                                                      && x.StartDate.Date == plan.StartDate.Date
+                                                      && x.EndDate.Date == plan.EndDate.Date);
         }
 
-        public async Task<bool> IsPlanDuplicate(UpdatePlanDto plan)
+        public async Task<bool> IsPlanDuplicate(InputUpdatePlanDto plan)
         {
-            return await _planRepository.IsAnyExist(x => x.PlanType == plan.PlanType 
-                                                      && x.StartDate == plan.StartDate 
-                                                      && x.EndDate == plan.EndDate 
+            return await _planRepository.IsAnyExist(x => x.PlanType == plan.PlanType
+                                                      && x.StartDate.Date == plan.StartDate.Date
+                                                      && x.EndDate.Date == plan.EndDate.Date
                                                       && x.Id != plan.Id);
         }
     }

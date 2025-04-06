@@ -1,10 +1,10 @@
-﻿using TrackApi.Application.Plans.Dtos;
+﻿using TrackApi.Application.DTOs.Plan;
 
 namespace TrackApi.Application.Plans.Contracts
 {
     public interface IPlanValidationService
     {
-        Task<bool> IsPlanDuplicate(CreationPlanDto plan);
-        Task<bool> IsPlanDuplicate(UpdatePlanDto plan);
+        Task<bool> IsPlanDuplicate(InputCreationPlanDto plan);
+        Task<bool> IsPlanDuplicate(InputUpdatePlanDto plan);
     }
 }

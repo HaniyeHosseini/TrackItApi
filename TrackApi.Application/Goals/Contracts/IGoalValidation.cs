@@ -1,4 +1,4 @@
-﻿using TrackApi.Application.Goals.Dtos;
+﻿using TrackApi.Application.DTOs.Goal;
 
 namespace TrackApi.Application.Goals.Contracts
 {

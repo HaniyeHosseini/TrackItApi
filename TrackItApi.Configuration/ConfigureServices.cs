@@ -21,6 +21,9 @@ namespace TrackItApi.Config
             services.AddScoped<IPlanService, PlanService>();
             services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IGoalService, GoalService>();
+            services.AddScoped<IGoalValidationService, GoalValidationService>();
+            services.AddScoped<IPlanValidationService, PlanValidationService>();
+
 
 
         }

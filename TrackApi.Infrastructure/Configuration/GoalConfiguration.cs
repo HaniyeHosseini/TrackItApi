@@ -14,7 +14,8 @@ namespace TrackApi.Infrastructure.Configuration
             builder.Ignore(g => g.Status);
             builder.Property(g => g.TargetDate).IsRequired();
             builder.Property(g => g.Description).IsRequired(false).HasMaxLength(2500);
-            builder.HasOne(g => g.Plan).WithMany(g => g.Goals).HasForeignKey(g => g.PlanId);
+            builder.Property(g=> g.PlanId).IsRequired();
+            builder.HasOne<Plan>().WithMany().HasForeignKey(g => g.PlanId);
         }
     }
 }

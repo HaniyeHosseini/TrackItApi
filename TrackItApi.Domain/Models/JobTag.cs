@@ -3,13 +3,11 @@
     public class JobTag
     {
         public long JobId { get; set; }
-        public Job Job { get; set; }
         public long TagId { get; set; }
-        public Tag Tag { get; set; }
 
-        public JobTag(long JobId, long tagId)
+        public JobTag(long jobId, long tagId)
         {
-            JobId = JobId;
+            JobId = jobId;
             TagId = tagId;
         }
     }

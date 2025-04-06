@@ -1,5 +1,5 @@
-﻿using TrackApi.Application.Goals.Contracts;
-using TrackApi.Application.Goals.Dtos;
+﻿using TrackApi.Application.DTOs.Goal;
+using TrackApi.Application.Goals.Contracts;
 using TrackApi.Infrastructure.Repositories.Plans;
 
 namespace TrackApi.Application.Goals.Implements

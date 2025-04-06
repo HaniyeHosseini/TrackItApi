@@ -1,10 +1,9 @@
 ﻿using Mapster;
+using TrackApi.Application.DTOs.Plan;
+using TrackApi.Application.Exceptions;
 using TrackApi.Application.Goals.Contracts;
 using TrackApi.Application.Plans.Contracts;
-using TrackApi.Application.Plans.Dtos;
-using TrackApi.Infrastructure.Repositories.Goals;
 using TrackApi.Infrastructure.Repositories.Plans;
-using TrackItApi.Common;
 using TrackItApi.Domain.Models;
 
 namespace TrackApi.Application.Plans.Implements
@@ -12,66 +11,70 @@ namespace TrackApi.Application.Plans.Implements
     public class PlanService : IPlanService
     {
         private readonly IPlanRepository _planRepository;
-        private readonly IGoalService  _goalService;
         private readonly IPlanValidationService _planValidationService;
-        public PlanService(IPlanRepository planRepository, IGoalService goalService, IPlanValidationService planValidationService)
+        private readonly IGoalService _goalService;
+        public PlanService(IPlanRepository planRepository, IPlanValidationService planValidationService, IGoalService goalService)
         {
             _planRepository = planRepository;
-            _goalService = goalService;
             _planValidationService = planValidationService;
+            _goalService = goalService;
         }
 
-        public async Task<IList<PlanViewDto>> GetAllPlansWithGoals()
+        public async Task<IList<OutputPlanDto>> GetAllPlans()
         {
             var plans = await _planRepository.GetAllPlansWithGoals();
-            var planViews = plans.Adapt<IList<PlanViewDto>>();
+            var planViews = plans.Adapt<IList<OutputPlanDto>>();
             return planViews;
         }
 
-        public async Task<PlanViewDto?> GetPlanWithGoalsByPlanId(long planId)
+        public async Task<OutputPlanDto?> GetPlanByPlanId(long planId)
         {
-            var plan = await _planRepository.GetPlanWithGoalsByPlanId(planId);
-            var planView = plan.Adapt<PlanViewDto>();
+            var plan = await _planRepository.GetPlanByPlanId(planId) ?? throw new RecordNotFoundException();
+            var goals = await _goalService.GetGoalsByPlanId(planId);
+            var planView = plan.Adapt<OutputPlanDto>();
+            planView.Goals = goals;
             return planView;
         }
 
-        public async Task<OperationResult> Insert(CreationPlanDto plan)
+        public async Task<OutputPlanDto> Insert(InputCreationPlanDto plan)
         {
-            var operationResult = new OperationResult();
             var duplicateResult = await _planValidationService.IsPlanDuplicate(plan);
             if (duplicateResult)
             {
-                /// exception handling
+                throw new DuplicateException();
             }
-            var entity = new Plan(plan.PlanType, plan.StartDate, plan.EndDate, plan.ParentPlanId, plan.Description);
-            var goals = plan.Goals;
+            var entity = new Plan(plan.PlanType, plan.StartDate, plan.EndDate, plan.ParentPlanId.HasValue ? plan.ParentPlanId.Value : null, plan.Description);
             await _planRepository.AddAsync(entity);
-            await _goalService.BulkInsert(goals);
-            operationResult.Succed();
-            return operationResult;
+            var planDto = entity.Adapt<OutputPlanDto>();
+            return planDto;
         }
 
-        public async Task<OperationResult> Remove(long planId)
+        public async Task<bool> Remove(long planId)
         {
-            var operationResult = new OperationResult();
+            var entity = await _planRepository.GetByIdAsync(planId);
+            if(entity == null) throw new RecordNotFoundException();
             await _planRepository.RemovePlanWithGoals(planId);
-            operationResult.Succed();
-            return operationResult;
+            return true;
+
         }
 
-        public async Task<OperationResult> Update(UpdatePlanDto plan)
+        public async Task<OutputPlanDto> Update(InputUpdatePlanDto plan)
         {
-            var operationResult = new OperationResult();
+            var entity = await _planRepository.GetByIdAsync(plan.Id) ?? throw new RecordNotFoundException();
             var duplicateResult = await _planValidationService.IsPlanDuplicate(plan);
             if (duplicateResult)
             {
-                /// exception handling
+                throw new DuplicateException();
             }
-            var entity = plan.Adapt<Plan>();
+            entity.PlanType = plan.PlanType;
+            entity.StartDate = plan.StartDate;
+            entity.EndDate = plan.EndDate;
+            entity.ParentPlanId = plan.ParentPlanId;
             entity.LastUpdate = DateTime.Now;
+            entity.Description = plan.Description;
             await _planRepository.UpdateAsync(entity);
-            operationResult.Succed();
-            return operationResult;
+            var planDto = entity.Adapt<OutputPlanDto>();
+            return planDto;
         }
     }
 }
