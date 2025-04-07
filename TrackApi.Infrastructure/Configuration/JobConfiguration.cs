@@ -16,7 +16,7 @@ namespace TrackApi.Infrastructure.Configuration
             builder.Property(j => j.StartDate).IsRequired();
             builder.Property(j => j.EndDate).IsRequired();
             builder.Property(j => j.Description).IsRequired(false).HasMaxLength(2500);
-            builder.Property(j => j.Prioritylevel).IsRequired();
+            builder.Property(j => j.PriorityLevel).IsRequired();
             builder.HasOne<Job>().WithMany().HasForeignKey(j => j.ParentJobId);
             builder.HasOne<Goal>().WithMany().HasForeignKey(j => j.GoalId);
         }

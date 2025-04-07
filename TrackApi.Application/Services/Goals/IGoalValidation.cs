@@ -1,6 +1,6 @@
 ﻿using TrackApi.Application.DTOs.Goal;
 
-namespace TrackApi.Application.Goals.Contracts
+namespace TrackApi.Application.Services.Goals
 {
     public interface IGoalValidationService
     {

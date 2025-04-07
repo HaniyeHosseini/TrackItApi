@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrackApi.Application.DTOs.Plan;
-using TrackApi.Application.Plans.Contracts;
 using TrackApi.Infrastructure.Repositories.Plans;
 
-namespace TrackApi.Application.Plans.Implements
+namespace TrackApi.Application.Services.Plans
 {
     public class PlanValidationService : IPlanValidationService
     {
@@ -20,7 +19,7 @@ namespace TrackApi.Application.Plans.Implements
 
         public async Task<bool> IsPlanDuplicate(InputCreationPlanDto plan)
         {
-            return await _planRepository.IsAnyExist(x => x.PlanType == plan.PlanType 
+            return await _planRepository.IsAnyExist(x => x.PlanType == plan.PlanType
                                                       && x.StartDate.Date == plan.StartDate.Date
                                                       && x.EndDate.Date == plan.EndDate.Date);
         }

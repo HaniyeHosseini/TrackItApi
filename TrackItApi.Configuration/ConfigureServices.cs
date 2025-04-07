@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TrackApi.Application.Goals.Contracts;
-using TrackApi.Application.Goals.Implements;
-using TrackApi.Application.Plans.Contracts;
-using TrackApi.Application.Plans.Implements;
+using TrackApi.Application.Services.Goals;
+using TrackApi.Application.Services.Plans;
 using TrackApi.Infrastructure.Context;
 using TrackApi.Infrastructure.Repositories.Base;
 using TrackApi.Infrastructure.Repositories.Goals;

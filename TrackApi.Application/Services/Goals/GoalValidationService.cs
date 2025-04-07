@@ -1,8 +1,7 @@
 ﻿using TrackApi.Application.DTOs.Goal;
-using TrackApi.Application.Goals.Contracts;
 using TrackApi.Infrastructure.Repositories.Plans;
 
-namespace TrackApi.Application.Goals.Implements
+namespace TrackApi.Application.Services.Goals
 {
     public class GoalValidationService : IGoalValidationService
     {

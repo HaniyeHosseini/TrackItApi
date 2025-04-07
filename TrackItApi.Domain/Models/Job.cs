@@ -9,17 +9,17 @@ namespace TrackItApi.Domain.Models
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public PriorityLevel  Prioritylevel { get; set; }
+        public PriorityLevel  PriorityLevel { get; set; }
         public Status Status { get; set; }
         public long GoalId { get; set; }
         public long? ParentJobId { get; set; }
-        public Job(string title, string description, DateTime startDate, DateTime endDate, PriorityLevel prioritylevel, long goalId, long? parentJobId)
+        public Job(string title, string description, DateTime startDate, DateTime endDate, PriorityLevel priorityLevel, long goalId, long? parentJobId)
         {
             Title = title;
             Description = description;
             StartDate = startDate;
             EndDate = endDate;
-            Prioritylevel = prioritylevel;
+            PriorityLevel = priorityLevel;
             GoalId = goalId;
             ParentJobId = parentJobId;
         }

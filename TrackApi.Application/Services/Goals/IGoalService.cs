@@ -1,7 +1,7 @@
 ﻿using TrackApi.Application.DTOs.Goal;
 using TrackItApi.Common;
 
-namespace TrackApi.Application.Goals.Contracts
+namespace TrackApi.Application.Services.Goals
 {
     public interface IGoalService
     {
@@ -11,6 +11,6 @@ namespace TrackApi.Application.Goals.Contracts
         Task<bool> RemoveGoal(long goalId);
         Task<OutputGoalDto> GetGoal(long goalId);
         Task<IList<OutputGoalDto>> GetGoalsByPlanId(long planId);
-        Task<IList<OutputGoalDto>> GetGoalsByDateFilter(DateTime? startDate , DateTime? endDate);
+        Task<IList<OutputGoalDto>> GetGoalsByDateFilter(DateTime? startDate, DateTime? endDate);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using TrackApi.Application.DTOs.Plan;
 
-namespace TrackApi.Application.Plans.Contracts
+namespace TrackApi.Application.Services.Plans
 {
     public interface IPlanValidationService
     {

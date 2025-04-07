@@ -1,9 +1,6 @@
 ﻿using Mapster;
 using TrackApi.Application.DTOs.Goal;
 using TrackApi.Application.DTOs.Plan;
-using TrackApi.Application.Goals.Contracts;
-using TrackApi.Infrastructure.Repositories.Goals;
-using TrackItApi.Common;
 using TrackItApi.Domain.Models;
 namespace TrackApi.Application.Mappings;
 

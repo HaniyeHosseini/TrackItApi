@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackApi.Application.DTOs.Plan;
-using TrackApi.Application.Plans.Contracts;
+using TrackApi.Application.Services.Plans;
 using TrackApi.Application.Validators;
 using TrackItApi.Common;
 using static System.Runtime.InteropServices.JavaScript.JSType;

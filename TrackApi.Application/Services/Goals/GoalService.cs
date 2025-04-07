@@ -1,12 +1,11 @@
 ﻿using Mapster;
 using TrackApi.Application.DTOs.Goal;
 using TrackApi.Application.Exceptions;
-using TrackApi.Application.Goals.Contracts;
 using TrackApi.Infrastructure.Repositories.Goals;
 using TrackApi.Infrastructure.Repositories.Plans;
 using TrackItApi.Domain.Models;
 
-namespace TrackApi.Application.Goals.Implements
+namespace TrackApi.Application.Services.Goals
 {
     public class GoalService : IGoalService
     {
@@ -26,7 +25,7 @@ namespace TrackApi.Application.Goals.Implements
 
         public async Task<IList<OutputGoalDto>> GetGoalsByDateFilter(DateTime? startDate, DateTime? endDate)
         {
-            var goals = await _goalRepository.GetGoalsByDateFilter(startDate,endDate);
+            var goals = await _goalRepository.GetGoalsByDateFilter(startDate, endDate);
             return goals.Adapt<IList<OutputGoalDto>>();
         }
 
@@ -45,7 +44,7 @@ namespace TrackApi.Application.Goals.Implements
             var data = goalEntity.Adapt<OutputGoalDto>();
             return data;
         }
-        public async Task< IEnumerable<OutputGoalDto>> BulkInsert(IList<InputCreationGoalDto> goals)
+        public async Task<IEnumerable<OutputGoalDto>> BulkInsert(IList<InputCreationGoalDto> goals)
         {
             var goalEntities = new List<Goal>(goals.Count());
             var plan = await _planRepository.GetByIdAsync(goals.First().PlanId) ?? throw new RecordNotFoundException();
@@ -69,7 +68,7 @@ namespace TrackApi.Application.Goals.Implements
         {
             var plan = await _planRepository.GetByIdAsync(goal.PlanId) ?? throw new RecordNotFoundException();
             if (goal.TargetDate > plan.EndDate) throw new CustomInvalidDataException(".تاریخ هدف باید کوچکتر از تاریخ پایان برنامه زمانی باشد");
-            var goalEntity =await _goalRepository.GetByIdAsync(goal.Id);
+            var goalEntity = await _goalRepository.GetByIdAsync(goal.Id);
             goalEntity.Description = goal.Description;
             goalEntity.TargetDate = goal.TargetDate;
             goalEntity.Title = goal.Title;

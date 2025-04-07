@@ -1,12 +1,11 @@
 ﻿using Mapster;
 using TrackApi.Application.DTOs.Plan;
 using TrackApi.Application.Exceptions;
-using TrackApi.Application.Goals.Contracts;
-using TrackApi.Application.Plans.Contracts;
+using TrackApi.Application.Services.Goals;
 using TrackApi.Infrastructure.Repositories.Plans;
 using TrackItApi.Domain.Models;
 
-namespace TrackApi.Application.Plans.Implements
+namespace TrackApi.Application.Services.Plans
 {
     public class PlanService : IPlanService
     {
@@ -22,14 +21,14 @@ namespace TrackApi.Application.Plans.Implements
 
         public async Task<IList<OutputPlanDto>> GetAllPlans()
         {
-            var plans = await _planRepository.GetAllPlansWithGoals();
+            var plans = await _planRepository.GetAllAsync();
             var planViews = plans.Adapt<IList<OutputPlanDto>>();
             return planViews;
         }
 
         public async Task<OutputPlanDto?> GetPlanByPlanId(long planId)
         {
-            var plan = await _planRepository.GetPlanByPlanId(planId) ?? throw new RecordNotFoundException();
+            var plan = await _planRepository.GetByIdAsync(planId) ?? throw new RecordNotFoundException();
             var goals = await _goalService.GetGoalsByPlanId(planId);
             var planView = plan.Adapt<OutputPlanDto>();
             planView.Goals = goals;
@@ -52,7 +51,7 @@ namespace TrackApi.Application.Plans.Implements
         public async Task<bool> Remove(long planId)
         {
             var entity = await _planRepository.GetByIdAsync(planId);
-            if(entity == null) throw new RecordNotFoundException();
+            if (entity == null) throw new RecordNotFoundException();
             await _planRepository.RemovePlanWithGoals(planId);
             return true;
 

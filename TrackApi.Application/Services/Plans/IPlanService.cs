@@ -1,7 +1,7 @@
 ﻿using TrackApi.Application.DTOs.Plan;
 using TrackItApi.Common;
 
-namespace TrackApi.Application.Plans.Contracts
+namespace TrackApi.Application.Services.Plans
 {
     public interface IPlanService
     {

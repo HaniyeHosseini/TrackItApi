@@ -3,7 +3,7 @@ using PersianDate.Standard;
 using System.Globalization;
 using System.Net;
 using TrackApi.Application.DTOs.Goal;
-using TrackApi.Application.Goals.Contracts;
+using TrackApi.Application.Services.Goals;
 using TrackItApi.Common;
 
 namespace Host.Controllers
