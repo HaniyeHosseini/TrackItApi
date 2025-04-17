@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using TrackApi.Application.DTOs.Goal;
+using TrackApi.Application.DTOs.Job;
 using TrackApi.Application.DTOs.Plan;
 using TrackItApi.Domain.Models;
 namespace TrackApi.Application.Mappings;
@@ -16,6 +17,8 @@ public class MappingConfig
         TypeAdapterConfig<Goal, OutputGoalDto>.NewConfig();
         TypeAdapterConfig<Goal, InputCreationGoalDto>.NewConfig();
         TypeAdapterConfig<Goal, InputUpdateGoalDto>.NewConfig();
+
+        TypeAdapterConfig<Job, OutputJobDto>.NewConfig();
 
     }
 }
