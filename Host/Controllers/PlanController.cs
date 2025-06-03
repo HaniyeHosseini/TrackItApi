@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackApi.Application.DTOs.Plan;
@@ -11,6 +12,7 @@ namespace Host.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlanController : ControllerBase
     {
         private readonly IPlanService _planService;

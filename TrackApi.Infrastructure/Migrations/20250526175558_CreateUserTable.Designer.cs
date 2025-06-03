@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackApi.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using TrackApi.Infrastructure.Context;
 namespace TrackApi.Infrastructure.Migrations
 {
     [DbContext(typeof(TrackApiContext))]
-    partial class TrackApiContextModelSnapshot : ModelSnapshot
+    [Migration("20250526175558_CreateUserTable")]
+    partial class CreateUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,9 +211,6 @@ namespace TrackApi.Infrastructure.Migrations
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("VARBINARY(512)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

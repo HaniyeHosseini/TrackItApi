@@ -13,7 +13,7 @@ namespace TrackApi.Application.Services.Jobs
         Task<OutputJobDto> Insert(InputCreationJobDto job);
         Task<OutputJobDto> Update(InputUpdateJobDto job);
         Task<bool> Remove(long jobId);
-        Task<OutputJobDto> GetGoal(long jobId);
+        Task<OutputJobDto> GetJob(long jobId);
         Task<IList<OutputJobDto>> GetJobsByGoalId(long goalId);
         Task<IList<OutputJobDto>> GetJobsByDateFilter(DateTime? startDate, DateTime? endDate);
     }

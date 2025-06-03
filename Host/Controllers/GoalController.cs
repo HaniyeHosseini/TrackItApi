@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PersianDate.Standard;
 using System.Globalization;
 using System.Net;
@@ -10,6 +11,7 @@ namespace Host.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GoalController : ControllerBase
     {
         private readonly IGoalService _goalService;

@@ -3,11 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using TrackApi.Application.Services.Goals;
 using TrackApi.Application.Services.Jobs;
 using TrackApi.Application.Services.Plans;
+using TrackApi.Application.Services.Users;
 using TrackApi.Infrastructure.Context;
+using TrackApi.Infrastructure.JWT;
 using TrackApi.Infrastructure.Repositories.Base;
 using TrackApi.Infrastructure.Repositories.Goals;
 using TrackApi.Infrastructure.Repositories.Jobs;
 using TrackApi.Infrastructure.Repositories.Plans;
+using TrackApi.Infrastructure.Repositories.Users;
 using TrackItApi.Domain.Models;
 namespace TrackItApi.Config
 {
@@ -25,6 +28,11 @@ namespace TrackItApi.Config
             services.AddScoped<IPlanValidationService, PlanValidationService>();
             services.AddScoped<IJobService, JobService>();
             services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+
         }
     }
 }

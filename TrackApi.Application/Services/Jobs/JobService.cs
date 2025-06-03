@@ -16,7 +16,7 @@ namespace TrackApi.Application.Services.Jobs
             _jobRepository = jobRepository;
         }
 
-        public async Task<OutputJobDto> GetGoal(long jobId)
+        public async Task<OutputJobDto> GetJob(long jobId)
         {
             var job = await _jobRepository.GetByIdAsync(jobId);
             return job.Adapt<OutputJobDto>();

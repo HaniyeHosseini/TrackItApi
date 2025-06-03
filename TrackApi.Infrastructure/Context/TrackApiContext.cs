@@ -15,6 +15,8 @@ namespace TrackApi.Infrastructure.Context
         public DbSet<Tag> Tags { get; set; }
         public DbSet<JobTag> JobTags { get; set; }
         public DbSet<Goal> Goals { get; set; }
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var assembly = Assembly.GetExecutingAssembly();
