@@ -1,7 +1,7 @@
 ﻿using Mapster;
-using TrackApi.Application.DTOs.Goal;
-using TrackApi.Application.DTOs.Job;
-using TrackApi.Application.DTOs.Plan;
+using TrackApi.Application.Features.Goals.Dtos;
+using TrackApi.Application.Features.Jobs.Dtos;
+using TrackApi.Application.Features.Plans.Dtos;
 using TrackItApi.Domain.Models;
 namespace TrackApi.Application.Mappings;
 

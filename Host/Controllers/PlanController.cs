@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TrackApi.Application.DTOs.Plan;
-using TrackApi.Application.Services.Plans;
-using TrackApi.Application.Validators;
+using TrackApi.Application.Features.Plans.Commands;
+using TrackApi.Application.Features.Plans.Dtos;
+using TrackApi.Application.Features.Plans.Queries;
 using TrackItApi.Common;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -15,40 +16,41 @@ namespace Host.Controllers
     [Authorize]
     public class PlanController : ControllerBase
     {
-        private readonly IPlanService _planService;
-        public PlanController(IPlanService planService)
+       private readonly IMediator _mediator;
+
+        public PlanController(IMediator mediator)
         {
-            _planService = planService;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllPlans()
         {
-            var plans = await _planService.GetAllPlans();
+            var plans = await _mediator.Send(new GetAllPlansQuery());
             return Ok(OperationResult<IList<OutputPlanDto>>.Success(plans, HttpStatusCode.OK));
         }
         [HttpGet("{planId}")]
         public async Task<IActionResult?> GetPlanById(long planId)
         {
-            var plan = await _planService.GetPlanByPlanId(planId);
+            var plan = await _mediator.Send(new GetPlanByIdQuery(planId));
             return Ok(OperationResult<OutputPlanDto>.Success(plan, HttpStatusCode.OK));
         }
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] InputCreationPlanDto creationPlanDto)
         {
-            var data = await _planService.Insert(creationPlanDto);
+            var data = await _mediator.Send(new CreatePlanCommand(creationPlanDto));
             return Ok(OperationResult<OutputPlanDto>.Success(data, HttpStatusCode.Created));
         }
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] InputUpdatePlanDto updatePlanDto)
         {
-            var result = await _planService.Update(updatePlanDto);
+            var result = await _mediator.Send(new UpdatePlanCommand(updatePlanDto));
             return Ok(OperationResult<OutputPlanDto>.Success(result, HttpStatusCode.OK));
         }
         [HttpDelete("{planId}")]
         public async Task<IActionResult> DeletePlanById(long planId)
         {
-            var result = await _planService.Remove(planId);
+            var result = await _mediator.Send(new DeletePlanCommand(planId));
             return Ok(OperationResult<bool>.Success(true, HttpStatusCode.OK));
         }
     }

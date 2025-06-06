@@ -5,12 +5,14 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
-using TrackApi.Application.Validators;
 using Host.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using TrackApi.Application.Features.Plans.Validators;
+using MediatR;
+using TrackApi.Application.Behaviors;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -52,7 +54,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 }); builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddValidatorsFromAssemblyContaining<InputCreationPlanValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePlanCommandValidator>();
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddAuthentication(options =>

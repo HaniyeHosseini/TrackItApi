@@ -8,7 +8,7 @@
 
         public BaseModel()
         {
-            CreationDate = DateTime.Now;
+            CreationDate = DateTime.UtcNow;
         }
     }
 }

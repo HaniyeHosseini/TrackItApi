@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersianDate.Standard;
 using System.Globalization;
 using System.Net;
-using TrackApi.Application.DTOs.Goal;
-using TrackApi.Application.Services.Goals;
+using TrackApi.Application.Features.Goals.Commands;
+using TrackApi.Application.Features.Goals.Dtos;
+using TrackApi.Application.Features.Goals.Queries;
 using TrackItApi.Common;
 
 namespace Host.Controllers
@@ -14,52 +16,50 @@ namespace Host.Controllers
     [Authorize]
     public class GoalController : ControllerBase
     {
-        private readonly IGoalService _goalService;
+        private readonly IMediator _mediator;
 
-        public GoalController(IGoalService goalService)
+        public GoalController(IMediator mediator)
         {
-            _goalService = goalService;
+            _mediator = mediator;
         }
 
         [HttpGet("ByGoalId/{goalId}")]
         public async Task<IActionResult> GetGoal(long goalId)
         {
-            var goal = await _goalService.GetGoal(goalId);
+            var goal = await _mediator.Send(new GetGoalByIdQuery(goalId));
             return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.OK));
-
         }
         [HttpGet("ByPlanId/{planId}")]
         public async Task<IActionResult> GetGoals(long planId)
         {
-            var goals = await _goalService.GetGoalsByPlanId(planId);
+            var goals = await _mediator.Send(new GetGoalsByPlanIdQuery(planId));
             return Ok(OperationResult<IList<OutputGoalDto>>.Success(goals, HttpStatusCode.OK));
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetGoals([FromQuery]string? startDate , [FromQuery] string? endDate)
+        public async Task<IActionResult> GetGoals([FromQuery] string? startDate, [FromQuery] string? endDate)
         {
-            var goals = await _goalService.GetGoalsByDateFilter(startDate?.ToEn(),endDate?.ToEn());
+            var goals = await _mediator.Send(new GetGoalsByDateFilterQuery(startDate?.ToEn(), endDate?.ToEn()));
             return Ok(OperationResult<IList<OutputGoalDto>>.Success(goals, HttpStatusCode.OK));
         }
         [HttpPost]
         public async Task<IActionResult> InsertGoalToPlan(InputCreationGoalDto goalDto)
         {
-            var goal = await _goalService.Insert(goalDto);
+            var goal = await _mediator.Send(new CreateGoalCommand(goalDto));
             return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.Created));
-
         }
         [HttpPut]
         public async Task<IActionResult> UpdateGoal(InputUpdateGoalDto goalDto)
         {
-            var goal = await _goalService.UpdateGoal(goalDto);
+            var goal = await _mediator.Send(new UpdateGoalCommand(goalDto));
             return Ok(OperationResult<OutputGoalDto>.Success(goal, HttpStatusCode.OK));
 
         }
         [HttpDelete("{goalId}")]
         public async Task<IActionResult> RemoveGoal(long goalId)
         {
-            var result =await _goalService.RemoveGoal(goalId);
-            return Ok(OperationResult<bool>.Success(result, HttpStatusCode.OK));
+            await _mediator.Send(new DeleteGoalCommand(goalId));
+            return Ok(OperationResult<bool>.Success(true, HttpStatusCode.OK));
 
         }
     }
