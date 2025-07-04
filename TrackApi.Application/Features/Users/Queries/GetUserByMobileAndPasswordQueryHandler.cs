@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
 using TrackApi.Application.Features.Users.Dtos;
-using TrackApi.Infrastructure.Repositories.Users.Queries;
 using TrackItApi.Domain.Enums;
 
 namespace TrackApi.Application.Features.Users.Queries

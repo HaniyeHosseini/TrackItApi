@@ -1,12 +1,12 @@
 ﻿using Mapster;
 using MediatR;
+using TrackApi.Application.Contracts.Commands;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
 using TrackApi.Application.Features.Plans.Dtos;
 using TrackApi.Application.Features.Plans.Services;
-using TrackApi.Infrastructure.Repositories.Plans.Commands;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
 
-namespace TrackApi.Application.Features.Plans.Commands
+namespace TrackApi.Application.Features.Plans.Commands.Update
 {
     public class UpdatePlanCommandHandler : IRequestHandler<UpdatePlanCommand, OutputPlanDto>
     {

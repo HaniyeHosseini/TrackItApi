@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TrackApi.Application\TrackApi.Application.csproj" />
     <ProjectReference Include="..\TrackItApi.Common\TrackItApi.Common.csproj" />
     <ProjectReference Include="..\TrackItApi.Domain\TrackItApi.Domain.csproj" />
   </ItemGroup>

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TrackApi.Application.Contracts.Commands;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Features.Plans.Services;
 using TrackApi.Infrastructure.Context;
 using TrackApi.Infrastructure.JWT;

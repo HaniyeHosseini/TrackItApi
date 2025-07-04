@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using MediatR;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Features.Plans.Dtos;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
 
 namespace TrackApi.Application.Features.Plans.Queries
 {

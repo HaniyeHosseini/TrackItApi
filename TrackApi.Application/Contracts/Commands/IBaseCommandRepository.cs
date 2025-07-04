@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrackItApi.Domain.Models;
 
-namespace TrackApi.Infrastructure.Repositories.Base.Commands
+namespace TrackApi.Application.Contracts.Commands
 {
     public interface IBaseCommandRepository<T> where T : BaseModel
     {

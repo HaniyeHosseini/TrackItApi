@@ -9,7 +9,7 @@ using TrackApi.Application.Features.Plans.Dtos;
 using TrackItApi.Common;
 using TrackItApi.Domain.Enums;
 
-namespace TrackApi.Application.Features.Plans.Commands
+namespace TrackApi.Application.Features.Plans.Commands.Update
 {
     public class UpdatePlanCommand : IRequest<OutputPlanDto>
     {

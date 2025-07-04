@@ -1,13 +1,13 @@
-﻿using FluentValidation;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackApi.Application.Features.Plans.Commands;
+using TrackApi.Application.Features.Plans.Commands.Create;
+using TrackApi.Application.Features.Plans.Commands.Update;
 using TrackApi.Application.Features.Plans.Dtos;
 using TrackApi.Application.Features.Plans.Queries;
 using TrackItApi.Common;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Host.Controllers
 {

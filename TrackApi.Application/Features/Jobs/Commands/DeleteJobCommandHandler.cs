@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using TrackApi.Application.Contracts.Commands;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
-using TrackApi.Infrastructure.Repositories.Jobs.Commands;
-using TrackApi.Infrastructure.Repositories.Jobs.Queries;
 
 namespace TrackApi.Application.Features.Jobs.Commands
 {

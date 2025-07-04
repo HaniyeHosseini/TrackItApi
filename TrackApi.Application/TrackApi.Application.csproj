@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TrackApi.Infrastructure\TrackApi.Infrastructure.csproj" />
     <ProjectReference Include="..\TrackItApi.Common\TrackItApi.Common.csproj" />
     <ProjectReference Include="..\TrackItApi.Domain\TrackItApi.Domain.csproj" />
   </ItemGroup>

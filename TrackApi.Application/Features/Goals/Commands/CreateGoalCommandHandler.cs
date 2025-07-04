@@ -1,9 +1,9 @@
 ﻿using Mapster;
 using MediatR;
+using TrackApi.Application.Contracts.Commands;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
 using TrackApi.Application.Features.Goals.Dtos;
-using TrackApi.Infrastructure.Repositories.Goals.Commands;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
 using TrackItApi.Domain.Models;
 
 namespace TrackApi.Application.Features.Goals.Commands

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Infrastructure.Context;
 using TrackItApi.Domain.Models;
 

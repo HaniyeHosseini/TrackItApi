@@ -1,8 +1,8 @@
 ﻿using Mapster;
 using MediatR;
+using TrackApi.Application.Contracts.Commands;
 using TrackApi.Application.Exceptions;
 using TrackApi.Application.Features.Jobs.Dtos;
-using TrackApi.Infrastructure.Repositories.Jobs.Commands;
 using TrackItApi.Domain.Enums;
 using TrackItApi.Domain.Models;
 

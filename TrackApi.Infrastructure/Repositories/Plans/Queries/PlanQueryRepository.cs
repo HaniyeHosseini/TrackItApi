@@ -1,4 +1,5 @@
-﻿using TrackApi.Infrastructure.Context;
+﻿using TrackApi.Application.Contracts.Queries;
+using TrackApi.Infrastructure.Context;
 using TrackApi.Infrastructure.Repositories.Base.Queries;
 using TrackItApi.Domain.Models;
 

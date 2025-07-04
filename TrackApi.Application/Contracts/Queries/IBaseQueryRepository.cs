@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using TrackItApi.Domain.Models;
 
-namespace TrackApi.Infrastructure.Repositories.Base.Queries
+namespace TrackApi.Application.Contracts.Queries
 {
     public interface IBaseQueryRepository<T> where T : BaseModel
     {

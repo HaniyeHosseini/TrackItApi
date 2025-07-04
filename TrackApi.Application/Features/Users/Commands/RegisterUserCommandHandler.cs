@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using TrackApi.Application.Contracts.Commands;
 using TrackApi.Application.Features.Users.Dtos;
-using TrackApi.Infrastructure.Repositories.Users.Commands;
 using TrackItApi.Domain.Enums;
 using TrackItApi.Domain.Models;
 

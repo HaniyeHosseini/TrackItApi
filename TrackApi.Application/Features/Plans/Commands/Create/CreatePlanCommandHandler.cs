@@ -1,13 +1,12 @@
 ﻿using Mapster;
 using MediatR;
+using TrackApi.Application.Contracts.Commands;
 using TrackApi.Application.Exceptions;
 using TrackApi.Application.Features.Plans.Dtos;
 using TrackApi.Application.Features.Plans.Services;
-using TrackApi.Infrastructure.Repositories.Plans.Commands;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
 using TrackItApi.Domain.Models;
 
-namespace TrackApi.Application.Features.Plans.Commands
+namespace TrackApi.Application.Features.Plans.Commands.Create
 {
     public class CreatePlanCommandHandler : IRequestHandler<CreatePlanCommand, OutputPlanDto>
     {

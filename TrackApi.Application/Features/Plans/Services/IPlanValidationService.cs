@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrackApi.Application.Features.Plans.Commands;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
+using TrackApi.Application.Contracts.Queries;
+using TrackApi.Application.Features.Plans.Commands.Create;
+using TrackApi.Application.Features.Plans.Commands.Update;
 
 namespace TrackApi.Application.Features.Plans.Services
 {

@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using TrackApi.Application.Contracts.Commands;
+using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
-using TrackApi.Infrastructure.Repositories.Plans.Commands;
-using TrackApi.Infrastructure.Repositories.Plans.Queries;
 
 namespace TrackApi.Application.Features.Plans.Commands
 {

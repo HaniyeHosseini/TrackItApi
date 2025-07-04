@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TrackApi.Infrastructure.Repositories.Goals.Commands;
+using TrackApi.Application.Contracts.Commands;
 
 namespace TrackApi.Application.Features.Goals.Commands
 {
