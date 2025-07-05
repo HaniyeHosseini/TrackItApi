@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackApi.Application.Features.Plans.Commands
+namespace TrackApi.Application.Features.Plans.Commands.Delete
 {
     public class DeletePlanCommand : IRequest<Unit>
     {

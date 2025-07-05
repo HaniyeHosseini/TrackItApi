@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TrackApi.Application.Features.Plans.Commands;
 using TrackApi.Application.Features.Plans.Commands.Create;
+using TrackApi.Application.Features.Plans.Commands.Delete;
 using TrackApi.Application.Features.Plans.Commands.Update;
 using TrackApi.Application.Features.Plans.Dtos;
 using TrackApi.Application.Features.Plans.Queries;

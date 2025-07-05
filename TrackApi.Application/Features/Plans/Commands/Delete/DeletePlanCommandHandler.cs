@@ -3,7 +3,7 @@ using TrackApi.Application.Contracts.Commands;
 using TrackApi.Application.Contracts.Queries;
 using TrackApi.Application.Exceptions;
 
-namespace TrackApi.Application.Features.Plans.Commands
+namespace TrackApi.Application.Features.Plans.Commands.Delete
 {
     public class DeletePlanCommandHandler : IRequestHandler<DeletePlanCommand, Unit>
     {
